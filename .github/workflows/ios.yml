@@ -50,7 +50,7 @@ jobs:
       - name: build archive
         run: |
           xcodebuild -scheme "Fluxstore" \
-          -archivePath $RUNNER_TEMP/Fluxstore.xcarchive \
+          -archivePath build/Fluxstore.xcarchive \
           -sdk iphoneos \
           -configuration Debug \
           -destination generic/platform=iOS \
