@@ -72,22 +72,20 @@ jobs:
 
       - name: build archive
         run: |
-          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" configuration Debug \
-            archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
-            PROVISIONING_STYLE="Manual" \
-            PROVISIONING_PROFILE={$BUILD_PROVISION_PROFILE_BASE64} \
-            CODE_SIGN_STYLE="Manual" \
-            CODE_SIGN_IDENTITY={$BUILD_CERTIFICATE_BASE64} \         
-
-
-
-      - name: export ipa
-        run: |
-          xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH . -exportOptionsPlist $PLIST_PATH -allowProvisioningUpdates
-            PROVISIONING_STYLE="Manual" \
-            PROVISIONING_PROFILE={$BUILD_PROVISION_PROFILE_BASE64} \
-            CODE_SIGN_STYLE="Manual" \
-            CODE_SIGN_IDENTITY={$BUILD_CERTIFICATE_BASE64} \    
+          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" -configuration Debug \
+          -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
+          PROVISIONING_STYLE="Manual" \
+          PROVISIONING_PROFILE=${BUILD_PROVISION_PROFILE_BASE64} \
+          CODE_SIGN_STYLE="Manual" \
+          CODE_SIGN_IDENTITY="${BUILD_CERTIFICATE_BASE64}"
+        
+    # - name: export ipa
+    #   run: |
+    #     xcodebuild -exportArchive -archivePath $ARCHIVE_PATH -exportPath $EXPORT_PATH -exportOptionsPlist $PLIST_PATH -allowProvisioningUpdates
+    #       PROVISIONING_STYLE="Manual" \
+    #       PROVISIONING_PROFILE=${BUILD_PROVISION_PROFILE_BASE64} \
+    #       CODE_SIGN_STYLE="Manual" \
+    #       CODE_SIGN_IDENTITY="${BUILD_CERTIFICATE_BASE64}"    
 
       # - name: Upload application
       #   uses: actions/upload-artifact@v3
