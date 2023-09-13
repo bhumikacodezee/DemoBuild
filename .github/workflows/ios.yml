@@ -72,7 +72,7 @@ jobs:
 
       - name: build archive
         run: |
-          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" -configuration Debug \
+          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" \
             archive -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
             PROVISIONING_STYLE="Manual" \
             PROVISIONING_PROFILE={$BUILD_PROVISION_PROFILE_BASE64} \
