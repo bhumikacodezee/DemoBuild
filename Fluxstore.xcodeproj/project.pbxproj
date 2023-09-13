@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,7 @@
 		04DDC5D02A8CE263004BF55D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDC5CF2A8CE263004BF55D /* Constants.swift */; };
 		04DDC5DD2A8CE76E004BF55D /* Product Sans Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04DDC5D62A8CE76E004BF55D /* Product Sans Bold.ttf */; };
 		04DDC5DE2A8CE76E004BF55D /* Product Sans Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04DDC5D72A8CE76E004BF55D /* Product Sans Regular.ttf */; };
+		11DD5A61103D28430B31A075 /* Pods_Fluxstore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C192E2978895EA485D7424 /* Pods_Fluxstore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,9 @@
 		04DDC5D62A8CE76E004BF55D /* Product Sans Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Product Sans Bold.ttf"; sourceTree = "<group>"; };
 		04DDC5D72A8CE76E004BF55D /* Product Sans Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Product Sans Regular.ttf"; sourceTree = "<group>"; };
 		04DDC5E22A8CE7A3004BF55D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		578C874D8CDA06B8325CC9A3 /* Pods-Fluxstore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fluxstore.debug.xcconfig"; path = "Target Support Files/Pods-Fluxstore/Pods-Fluxstore.debug.xcconfig"; sourceTree = "<group>"; };
+		91C192E2978895EA485D7424 /* Pods_Fluxstore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fluxstore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1ED22B3909180D816F6ABD0 /* Pods-Fluxstore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fluxstore.release.xcconfig"; path = "Target Support Files/Pods-Fluxstore/Pods-Fluxstore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D0C6322A9DEDF900E9DD63 /* ACarousel in Frameworks */,
+				11DD5A61103D28430B31A075 /* Pods_Fluxstore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +132,8 @@
 			children = (
 				04DDC5BF2A8CE0F2004BF55D /* Fluxstore */,
 				04DDC5BE2A8CE0F2004BF55D /* Products */,
+				9E02953640D0E8F148264FA2 /* Pods */,
+				A0F7DEC3E97D4E5705BA4000 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -198,6 +205,24 @@
 			path = "product-sans";
 			sourceTree = "<group>";
 		};
+		9E02953640D0E8F148264FA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				578C874D8CDA06B8325CC9A3 /* Pods-Fluxstore.debug.xcconfig */,
+				A1ED22B3909180D816F6ABD0 /* Pods-Fluxstore.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A0F7DEC3E97D4E5705BA4000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91C192E2978895EA485D7424 /* Pods_Fluxstore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,6 +230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DDC5CB2A8CE0F4004BF55D /* Build configuration list for PBXNativeTarget "Fluxstore" */;
 			buildPhases = (
+				D1EC39BC55967924F732BFC1 /* [CP] Check Pods Manifest.lock */,
 				04DDC5B92A8CE0F2004BF55D /* Sources */,
 				04DDC5BA2A8CE0F2004BF55D /* Frameworks */,
 				04DDC5BB2A8CE0F2004BF55D /* Resources */,
@@ -237,7 +263,7 @@
 				};
 			};
 			buildConfigurationList = 04DDC5B82A8CE0F2004BF55D /* Build configuration list for PBXProject "Fluxstore" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -271,6 +297,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D1EC39BC55967924F732BFC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fluxstore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04DDC5B92A8CE0F2004BF55D /* Sources */ = {
@@ -419,6 +470,7 @@
 		};
 		04DDC5CC2A8CE0F4004BF55D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 578C874D8CDA06B8325CC9A3 /* Pods-Fluxstore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -453,6 +505,7 @@
 		};
 		04DDC5CD2A8CE0F4004BF55D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1ED22B3909180D816F6ABD0 /* Pods-Fluxstore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
