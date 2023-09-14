@@ -87,4 +87,4 @@ jobs:
           app-path: '/Users/runner/work/DemoBuild/DemoBuild/output.ipa' 
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY_BASE64 | base64 --decode }}
