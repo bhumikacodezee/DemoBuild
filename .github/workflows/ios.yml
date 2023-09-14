@@ -31,7 +31,7 @@ jobs:
           PLIST_PATH: 'Fluxstore/Info.plist'
           SCHEME_NAME: 'Fluxstore'
           ARTIFACT_NAME: 'Fluxstore.ipa'
-          ARTIFACT_PATH: 'Fluxstore/Fluxstore.ipa'
+          ARTIFACT_PATH: 'Fluxstore/'
         run: |
           # create variables
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
@@ -95,13 +95,14 @@ jobs:
           workspace-path: Fluxstore.xcworkspace # optional
           configuration: "Debug"
           export-method: "development"
+          build-path: ${{ env.ARTIFACT_PATH }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
                  name: ${{ env.ARTIFACT_NAME }}
-                 path: |
-                   ./archive
+                 path: | 
+                   ${{ env.ARTIFACT_PATH }}
                    
       # - name: Clean up keychain and provisioning profile
       #   if: ${{ always() }}
