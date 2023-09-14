@@ -29,7 +29,7 @@ jobs:
           PLIST_PATH: 'Fluxstore/Info.plist'
           SCHEME_NAME: 'Fluxstore'
           ARTIFACT_NAME: 'Fluxstore.ipa'
-          ARTIFACT_PATH: './development/'  # Specify the artifact path here
+          ARTIFACT_PATH: 'frontend/build'  # Specify the artifact path here
         run: |
           # create variables
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
@@ -75,5 +75,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          path: my_file.ipa
+          path: |
+             ${{ env.ARTIFACT_PATH }}
 
