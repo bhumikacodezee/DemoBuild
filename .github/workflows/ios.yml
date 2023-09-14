@@ -94,6 +94,7 @@ jobs:
           team-id: 2Y7ZL4NR85
           workspace-path: Fluxstore.xcworkspace # optional
           configuration: "Debug"
+          export-method: "development"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
