@@ -14,7 +14,7 @@ jobs:
         run: /usr/bin/xcodebuild -version
 
       - name: checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install the Apple certificate and provisioning profile
         env:
@@ -72,10 +72,12 @@ jobs:
       #     path: |
       #       $RUNNER_TEMP/work/DemoBuild/DemoBuild/output.ipa
 
-      - name: Upload Artifacts
+      - name: Upload application
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: |
-            ${{ env.ARTIFACT_PATH }}
+          name: app
+          path: ${{ runner.temp }}/build/Fluxstore.ipa
+          # you can also archive the entire directory 
+          # path: ${{ runner.temp }}/build
+          retention-days: 3
 
