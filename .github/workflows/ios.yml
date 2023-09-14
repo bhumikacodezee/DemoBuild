@@ -55,8 +55,8 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles          
 
       - name: Build and export iOS
-         uses: yukiarrr/ios-build-action@v1.11.0
-         with:
+        uses: yukiarrr/ios-build-action@v1.11.0
+        with:
            project-path: Fluxstore.xcodeproj
            workspace-path: Fluxstore.xcworkspace
            scheme: Fluxstore
@@ -69,17 +69,18 @@ jobs:
            team-id: 2Y7ZL4NR85
            export-method: development
 
-    - name: Upload Artifacts
-             uses: actions/upload-artifact@v3
-             with:
-               name: ${{ env.ARTIFACT_NAME }}
-               path: |
-                 ${{ env.ARTIFACT_PATH }}
-           - name: Clean up keychain and provisioning profile
-             if: ${{ always() }}
-             run: |
-               security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-               rm ~/Library/MobileDevice/Provisioning\ Profiles/DevelopmentProfile.mobileprovision
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+                 name: ${{ env.ARTIFACT_NAME }}
+                 path: |
+                   ${{ env.ARTIFACT_PATH }}
+                   
+       # - name: Clean up keychain and provisioning profile
+       #   if: ${{ always() }}
+       #   run: |
+       #     security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+       #     rm ~/Library/MobileDevice/Provisioning\ Profiles/DevelopmentProfile.mobileprovision
        # - name: build archive
        #    run: |
        #      xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" -configuration Debug \
