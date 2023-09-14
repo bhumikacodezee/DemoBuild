@@ -73,7 +73,7 @@ jobs:
 
       - name: build archive
         run: |
-          xcodebuild -scheme "Fluxstore" \
+          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" \
           -archivePath build/Fluxstore.xcarchive \
           -sdk iphoneos \
           -configuration Debug \
