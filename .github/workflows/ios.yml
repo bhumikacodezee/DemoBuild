@@ -70,17 +70,29 @@ jobs:
       #      team-id: 2Y7ZL4NR85
       #      export-method: development
 
+      # - name: Build and export iOS
+      #   uses: yukiarrr/ios-build-action@v1.11.0
+      #   with:
+      #     custom-keychain-name: my-ios-build.keychin # or {commit-hash}-ios-build.keychain
+      #     project-path:  Fluxstore.xcodeproj
+      #     p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
+      #     p12-cer-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+      #     mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+      #     code-signing-identity: 'Apple Development'
+      #     team-id: 2Y7ZL4NR85
+      #     workspace-path: Fluxstore.xcworkspace
+      #     configuration: "Debug"
+
+
       - name: Build and export iOS
         uses: yukiarrr/ios-build-action@v1.11.0
         with:
-          custom-keychain-name: my-ios-build.keychin # or {commit-hash}-ios-build.keychain
-          project-path:  Fluxstore.xcodeproj
-          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
-          p12-cer-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          project-path: Fluxstore.xcodeproj
+          p12-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
           code-signing-identity: 'Apple Development'
           team-id: 2Y7ZL4NR85
-          workspace-path: Fluxstore.xcworkspace
+          workspace-path: Fluxstore.xcworkspace # optional
           configuration: "Debug"
 
       - name: Upload Artifacts
