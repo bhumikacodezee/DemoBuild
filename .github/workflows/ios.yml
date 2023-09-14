@@ -80,3 +80,11 @@ jobs:
           # you can also archive the entire directory 
           path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
           retention-days: 3
+
+
+      - name: Distribute ipa to App Center
+        uses: akiojin/appcenter-distribute-github-action@v1
+        with:
+          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+          path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
+          app: bhumikacodezee/DemoBuild
