@@ -73,12 +73,12 @@ jobs:
 
       - name: build archive
         run: |
-          xcodebuild -workspace $WORKSPACE -scheme $SCHEME_NAME -configuration Debug \
-          -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
-          PROVISIONING_STYLE="Manual" \
-          PROVISIONING_PROFILE=${BUILD_PROVISION_PROFILE_BASE64} \
-          CODE_SIGN_STYLE="Manual" \
-          CODE_SIGN_IDENTITY="${BUILD_CERTIFICATE_BASE64}"
+          xcodebuild -scheme "Fluxstore" \
+          -archivePath build/Fluxstore.xcarchive \
+          -sdk iphoneos \
+          -configuration Debug \
+          -destination generic/platform=iOS \
+          clean archive 
         
     # - name: export ipa
     #   run: |
