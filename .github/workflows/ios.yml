@@ -110,7 +110,7 @@ jobs:
             // Email details
             const mailOptions = {
               from: 'bhumika.codezee@gmail.com',
-              to: 'makani20@gmail.com',
+              to: 'bhumithummar7@gmail.com',
               subject: 'Your App IPA File',
               text: 'Attached is the IPA file for your app.',
               attachments: [
