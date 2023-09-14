@@ -211,7 +211,6 @@
 				578C874D8CDA06B8325CC9A3 /* Pods-Fluxstore.debug.xcconfig */,
 				A1ED22B3909180D816F6ABD0 /* Pods-Fluxstore.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
