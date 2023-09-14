@@ -87,7 +87,9 @@ jobs:
       #     name: app
       #     path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
 
-
+      - name: Install Node.js dependencies
+        run: |
+          npm install nodemailer
 
       - name: Share IPA via Email
         uses: actions/github-script@v6
