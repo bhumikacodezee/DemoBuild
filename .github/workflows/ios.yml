@@ -78,5 +78,5 @@ jobs:
           name: app
           # path: Users/runner/work/DemoBuild/DemoBuild/output.ipa
           # you can also archive the entire directory 
-          path: ${{ runner.temp }}/DemoBuild/DemoBuild/output.ipa
+          path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
           retention-days: 3
