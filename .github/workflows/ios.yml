@@ -84,8 +84,49 @@ jobs:
       - name: Download IPA artifact
         uses: actions/download-artifact@v2
         with:
-          name: Fluxstore-ipa-artifact
+          name: app
           path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
+
+
+
+      - name: Share IPA via Email
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.APP_GITHUB_TOKEN }}
+          script: |
+            const nodemailer = require('nodemailer');
+      
+            // Set up your email configuration
+            const transporter = nodemailer.createTransport({
+              service: 'gmail', // e.g., 'gmail'
+              auth: {
+                user: 'bhumika.codezee@gmail.com',
+                pass: 'Bhumi@303101#',
+              },
+            });
+      
+            // Email details
+            const mailOptions = {
+              from: 'bhumika.codezee@gmail.com',
+              to: 'makani20@gmail.com',
+              subject: 'Your App IPA File',
+              text: 'Attached is the IPA file for your app.',
+              attachments: [
+                {
+                  filename: 'Fluxstore-ipa-artifact.ipa',
+                  path: '/Users/runner/work/DemoBuild/DemoBuild/output.ipa',
+                },
+              ],
+            };
+      
+            // Send the email
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.error(error);
+              } else {
+                console.log('Email sent: ' + info.response);
+              }
+            });
       # - name: 'Upload app to TestFlight'
       #   uses: apple-actions/upload-testflight-build@v1
       #   with: 
