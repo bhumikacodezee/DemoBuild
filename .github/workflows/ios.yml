@@ -96,12 +96,12 @@ jobs:
           configuration: "Debug"
           export-method: "development"
 
-      # - name: Upload Artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #            name: ${{ env.ARTIFACT_NAME }}
-      #            path: |
-      #              ${{ env.ARTIFACT_PATH }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+                 name: ${{ env.ARTIFACT_NAME }}
+                 path: |
+                   ./archive
                    
       # - name: Clean up keychain and provisioning profile
       #   if: ${{ always() }}
