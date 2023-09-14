@@ -81,10 +81,10 @@ jobs:
           path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
           retention-days: 3
 
-
-      - name: Distribute ipa to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
-        with:
-          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
-          app: bhumikacodezee/DemoBuild
+      - name: 'Upload app to TestFlight'
+        uses: apple-actions/upload-testflight-build@v1
+        with: 
+          app-path: '/Users/runner/work/DemoBuild/DemoBuild/output.ipa' 
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
