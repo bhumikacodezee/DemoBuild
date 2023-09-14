@@ -103,7 +103,7 @@ jobs:
               service: 'gmail', // e.g., 'gmail'
               auth: {
                 user: 'bhumika.codezee@gmail.com',
-                pass: 'Bhumi@303101#',
+                pass: 'Bhumika@123',
               },
             });
       
