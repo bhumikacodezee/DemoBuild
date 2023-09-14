@@ -71,6 +71,13 @@ jobs:
        #      CODE_SIGN_STYLE="Manual" \
        #      CODE_SIGN_IDENTITY={$BUILD_CERTIFICATE_BASE64} \
 
+      - name: Clean DerivedData
+        run: |
+          rm -rf ~/Library/Developer/Xcode/DerivedData
+       
+      - name: List Schemes
+        run: xcodebuild -workspace $WORKSPACE -list
+
       - name: build archive
         run: |
           xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" \
