@@ -76,8 +76,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: ${{ runner.temp }}/build/Fluxstore.ipa
+          path: Users/runner/work/DemoBuild/DemoBuild/output.ipa
           # you can also archive the entire directory 
           # path: ${{ runner.temp }}/build
           retention-days: 3
-
