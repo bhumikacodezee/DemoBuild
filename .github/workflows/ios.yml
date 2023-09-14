@@ -25,6 +25,7 @@ jobs:
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
           BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          P12_KEY_BASE64: ${{ secrets.P12_KEY_BASE64 }}
           ARCHIVE_PATH: './build/Fluxstore.xcarchive'
           EXPORT_PATH: 'Fluxstore/'
           PLIST_PATH: 'Fluxstore/Info.plist'
@@ -54,20 +55,32 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles          
 
+      # - name: Build and export iOS
+      #   uses: yukiarrr/ios-build-action@v1.11.0
+      #   with:
+      #      project-path: Fluxstore.xcodeproj
+      #      workspace-path: Fluxstore.xcworkspace
+      #      scheme: Fluxstore
+      #      configuration: Debug
+      #      output-path: artifacts/Fluxstore.ipa
+      #      p12-base64: ${{env.BUILD_CERTIFICATE_BASE64}}
+      #      certificate-password: ${{env.P12_PASSWORD}}
+      #      mobileprovision-base64: ${{env.BUILD_PROVISION_PROFILE_BASE64}}
+      #      code-signing-identity: 'Apple Development'
+      #      team-id: 2Y7ZL4NR85
+      #      export-method: development
+
       - name: Build and export iOS
         uses: yukiarrr/ios-build-action@v1.11.0
         with:
-           project-path: Fluxstore.xcodeproj
-           workspace-path: Fluxstore.xcworkspace
-           scheme: Fluxstore
-           configuration: Debug
-           output-path: artifacts/Fluxstore.ipa
-           p12-base64: ${{env.BUILD_CERTIFICATE_BASE64}}
-           certificate-password: ${{env.P12_PASSWORD}}
-           mobileprovision-base64: ${{env.BUILD_PROVISION_PROFILE_BASE64}}
-           code-signing-identity: 'Apple Development'
-           team-id: 2Y7ZL4NR85
-           export-method: development
+          custom-keychain-name: my-ios-build.keychin # or {commit-hash}-ios-build.keychain
+          project-path:  Fluxstore.xcodeproj
+          p12-key-base64: ${{ secrets.P12_KEY_BASE64 }}
+          p12-cer-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          code-signing-identity: 'Apple Development'
+          team-id: 2Y7ZL4NR85
+          workspace-path: Fluxstore.xcworkspace
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
