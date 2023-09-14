@@ -28,6 +28,7 @@ jobs:
           ARCHIVE_PATH: './build/Fluxstore.xcarchive'
           EXPORT_PATH: 'Fluxstore/'
           PLIST_PATH: 'Fluxstore/Info.plist'
+          SCHEME_NAME: 'Fluxstore'
         run: |
           # create variables
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
@@ -72,7 +73,7 @@ jobs:
 
       - name: build archive
         run: |
-          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" -configuration Debug \
+          xcodebuild -workspace $WORKSPACE -scheme $SCHEME_NAME -configuration Debug \
           -archivePath $ARCHIVE_PATH -allowProvisioningUpdates
           PROVISIONING_STYLE="Manual" \
           PROVISIONING_PROFILE=${BUILD_PROVISION_PROFILE_BASE64} \
