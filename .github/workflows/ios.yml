@@ -29,6 +29,8 @@ jobs:
           EXPORT_PATH: 'Fluxstore/'
           PLIST_PATH: 'Fluxstore/Info.plist'
           SCHEME_NAME: 'Fluxstore'
+          ARTIFACT_NAME: 'Fluxstore.ipa'
+          ARTIFACT_PATH: 'development/'
         run: |
           # create variables
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
@@ -52,8 +54,32 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles          
 
+      - name: Build and export iOS
+         uses: yukiarrr/ios-build-action@v1.11.0
+         with:
+           project-path: Fluxstore.xcodeproj
+           workspace-path: Fluxstore.xcworkspace
+           scheme: Fluxstore
+           configuration: Debug
+           output-path: artifacts/Fluxstore.ipa
+           p12-base64: ${{env.BUILD_CERTIFICATE_BASE64}}
+           certificate-password: ${{env.P12_PASSWORD}}
+           mobileprovision-base64: ${{env.BUILD_PROVISION_PROFILE_BASE64}}
+           code-signing-identity: 'Apple Development'
+           team-id: 2Y7ZL4NR85
+           export-method: development
 
-
+    - name: Upload Artifacts
+             uses: actions/upload-artifact@v3
+             with:
+               name: ${{ env.ARTIFACT_NAME }}
+               path: |
+                 ${{ env.ARTIFACT_PATH }}
+           - name: Clean up keychain and provisioning profile
+             if: ${{ always() }}
+             run: |
+               security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+               rm ~/Library/MobileDevice/Provisioning\ Profiles/DevelopmentProfile.mobileprovision
        # - name: build archive
        #    run: |
        #      xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" -configuration Debug \
@@ -71,21 +97,21 @@ jobs:
        #      CODE_SIGN_STYLE="Manual" \
        #      CODE_SIGN_IDENTITY={$BUILD_CERTIFICATE_BASE64} \
 
-      - name: Clean DerivedData
-        run: |
-          rm -rf ~/Library/Developer/Xcode/DerivedData
+      # - name: Clean DerivedData
+      #   run: |
+      #     rm -rf ~/Library/Developer/Xcode/DerivedData
        
-      - name: List Schemes
-        run: xcodebuild -workspace $WORKSPACE -list
+      # - name: List Schemes
+      #   run: xcodebuild -workspace $WORKSPACE -list
 
-      - name: build archive
-        run: |
-          xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" \
-          -archivePath build/Fluxstore.xcarchive \
-          -sdk iphoneos \
-          -configuration Debug \
-          -destination generic/platform=iOS \
-          clean archive 
+      # - name: build archive
+      #   run: |
+      #     xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" \
+      #     -archivePath build/Fluxstore.xcarchive \
+      #     -sdk iphoneos \
+      #     -configuration Debug \
+      #     -destination generic/platform=iOS \
+      #     clean archive 
         
     # - name: export ipa
     #   run: |
