@@ -81,11 +81,11 @@ jobs:
           path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
           retention-days: 3
 
-      - name: Download IPA artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: app
-          path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
+      # - name: Download IPA artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: app
+      #     path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
 
 
 
