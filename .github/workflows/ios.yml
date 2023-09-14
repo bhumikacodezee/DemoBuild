@@ -100,14 +100,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
                  name: ${{ env.ARTIFACT_NAME }}
-                 path: |
-                   ${{ env.ARTIFACT_PATH }}
+                 path: ${{ github.workspace }}
                    
-       # - name: Clean up keychain and provisioning profile
-       #   if: ${{ always() }}
-       #   run: |
-       #     security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-       #     rm ~/Library/MobileDevice/Provisioning\ Profiles/DevelopmentProfile.mobileprovision
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() }}
+        run: |
+           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+           rm ~/Library/MobileDevice/Provisioning\ Profiles/DevelopmentProfile.mobileprovision
        # - name: build archive
        #    run: |
        #      xcodebuild -workspace $WORKSPACE -scheme "Fluxstore" -configuration Debug \
