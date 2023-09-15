@@ -53,27 +53,27 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      # - name: Build and export iOS
-      #   uses: yukiarrr/ios-build-action@v1.11.0
-      #   with:
-      #     project-path: Fluxstore.xcodeproj
-      #     p12-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
-      #     mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
-      #     code-signing-identity: 'Apple Development'
-      #     team-id: 2Y7ZL4NR85
-      #     workspace-path: Fluxstore.xcworkspace
-      #     configuration: "Debug"
-      #     export-method: "development"
-
       - name: Build and export iOS
         uses: yukiarrr/ios-build-action@v1.11.0
         with:
           project-path: Fluxstore.xcodeproj
-          p12-base64: ${{ secrets.BUILD_CERTIFICATE_DISTRIBUTION_BASE64 }}
-          mobileprovision-base64: ${{ secrets.BUILD_PROVISION_DIST_PROFILE_BASE64 }}
-          code-signing-identity: 'Apple Distribution'
-          team-id: PDN23JTZF7
+          p12-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          code-signing-identity: 'Apple Development'
+          team-id: 2Y7ZL4NR85
           workspace-path: Fluxstore.xcworkspace
+          configuration: "Debug"
+          export-method: "development"
+
+      # - name: Build and export iOS
+      #   uses: yukiarrr/ios-build-action@v1.11.0
+      #   with:
+      #     project-path: Fluxstore.xcodeproj
+      #     p12-base64: ${{ secrets.BUILD_CERTIFICATE_DISTRIBUTION_BASE64 }}
+      #     mobileprovision-base64: ${{ secrets.BUILD_PROVISION_DIST_PROFILE_BASE64 }}
+      #     code-signing-identity: 'Apple Distribution'
+      #     team-id: PDN23JTZF7
+      #     workspace-path: Fluxstore.xcworkspace
 
       # - name: Upload Artifacts
       #   uses: actions/upload-artifact@v2
@@ -91,17 +91,17 @@ jobs:
           path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
           retention-days: 3
 
-      - name: Distribute ipa to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
-        with:
-          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          build-number: ${{ github.run_number }}
-          path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
-          app: bhumikacodezee/DemoBuild
-          mandatory: true
-          silent: false
-          group: 'Tests'
-          release_notes: "<Release Notes>"
+      # - name: Distribute ipa to App Center
+      #   uses: akiojin/appcenter-distribute-github-action@v1
+      #   with:
+      #     token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+      #     build-number: ${{ github.run_number }}
+      #     path: /Users/runner/work/DemoBuild/DemoBuild/output.ipa
+      #     app: bhumikacodezee/DemoBuild
+      #     mandatory: true
+      #     silent: false
+      #     group: 'Tests'
+      #     release_notes: "<Release Notes>"
       # - name: Download IPA artifact
       #   uses: actions/download-artifact@v2
       #   with:
