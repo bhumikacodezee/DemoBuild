@@ -53,17 +53,27 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
+      # - name: Build and export iOS
+      #   uses: yukiarrr/ios-build-action@v1.11.0
+      #   with:
+      #     project-path: Fluxstore.xcodeproj
+      #     p12-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+      #     mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+      #     code-signing-identity: 'Apple Development'
+      #     team-id: 2Y7ZL4NR85
+      #     workspace-path: Fluxstore.xcworkspace
+      #     configuration: "Debug"
+      #     export-method: "development"
+
       - name: Build and export iOS
         uses: yukiarrr/ios-build-action@v1.11.0
         with:
           project-path: Fluxstore.xcodeproj
-          p12-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
-          mobileprovision-base64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
-          code-signing-identity: 'Apple Development'
+          p12-base64: ${{ secrets.BUILD_CERTIFICATE_DISTRIBUTION_BASE64 }}
+          mobileprovision-base64: ${{ secrets.BUILD_PROVISION_DIST_PROFILE_BASE64 }}
+          code-signing-identity: 'Apple Distribution'
           team-id: 2Y7ZL4NR85
           workspace-path: Fluxstore.xcworkspace
-          configuration: "Debug"
-          export-method: "development"
 
       # - name: Upload Artifacts
       #   uses: actions/upload-artifact@v2
