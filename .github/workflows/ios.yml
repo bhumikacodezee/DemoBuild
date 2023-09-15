@@ -72,7 +72,7 @@ jobs:
           p12-base64: ${{ secrets.BUILD_CERTIFICATE_DISTRIBUTION_BASE64 }}
           mobileprovision-base64: ${{ secrets.BUILD_PROVISION_DIST_PROFILE_BASE64 }}
           code-signing-identity: 'Apple Distribution'
-          team-id: 2Y7ZL4NR85
+          team-id: PDN23JTZF7
           workspace-path: Fluxstore.xcworkspace
 
       # - name: Upload Artifacts
